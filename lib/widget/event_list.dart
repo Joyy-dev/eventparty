@@ -1,0 +1,76 @@
+import 'package:eventparty/provider/event.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
+class EventList extends StatelessWidget {
+  const EventList({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final eventProvider = Provider.of<Events>(context);
+    final event = eventProvider.allEvent;
+
+    return SizedBox(
+      height: 500,
+      child: ListView.builder(
+        itemCount: event.length,
+        itemBuilder: (context, index) {
+          final events = event[index];
+          return Container(
+            padding: EdgeInsets.symmetric(vertical: 8),
+            margin: EdgeInsets.symmetric(vertical: 10),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey,
+                  blurRadius: 10,
+                  offset: Offset(0, 3)
+                )
+              ]
+            ),
+            child: ListTile(
+              leading: Image.asset(
+                events.image,
+                fit: BoxFit.cover,
+                width: 80,
+                height: 300,
+              ),
+              title: Text(events.title),
+              subtitle: Column(
+                children: [
+                  Row(
+                    children: [
+                      Icon(Icons.calendar_month, color: Colors.grey, size: 15,),
+                      SizedBox(width: 5,),
+                      Text(
+                        DateFormat('d MMM y').format(events.eventDate),
+                        style: TextStyle(
+                          color: Colors.grey
+                        ),
+                      )
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Icon(Icons.location_pin, color: Colors.grey, size: 15,),
+                      SizedBox(width: 5,),
+                      Text(
+                        events.location,
+                        style: TextStyle(
+                          color: Colors.grey
+                        ),
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          );
+        },          
+      ),
+    );
+  }
+}
