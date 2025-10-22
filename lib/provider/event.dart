@@ -71,16 +71,48 @@ class Events with ChangeNotifier {
       eventTime: DateTime(2025, 11, 25), 
       eventDate: DateTime(2025, 11, 25, 12, 0), 
       location: 'Landmark Beach, Lagos'
+    ),
+    Event(
+      id: '5', 
+      title: 'Taste of Lagos Lifestyle Festival', 
+      image: 'assets/images/event.png', 
+      price: '10000.0', 
+      description: 'A weekend of food, fun, and culture — enjoy delicious meals from over 50 top chefs and vendors.', 
+      category: 'Lifestyle', 
+      eventTime: DateTime(2025, 11, 25), 
+      eventDate: DateTime(2025, 11, 25, 12, 0), 
+      location: 'Banana Island, Lagos'
     )
   ];
 
-  List<Event> get allEvent {
-    return [..._allEvent];
-  }
+  List<Event> _filteredEvents = [];
 
   Event findById (String id) {
     return _allEvent.firstWhere((Event) => Event.id == id);
   }
-}
 
-// final filteredEvents = allEvents.where((event) => event.category == selectedCategory).toList();
+  List<Event> get allEvent {
+    if (_filteredEvents.isNotEmpty) {
+      return [..._filteredEvents];
+    }
+    return [..._allEvent];
+  }
+
+  void filterBy(String category) {
+    if (category == 'All') {
+      _filteredEvents = []; 
+    } else {
+      _filteredEvents = _allEvent.where((event) => event.category == category).toList();
+    }
+    notifyListeners();
+  }
+
+  void resetFilter() {
+    _filteredEvents = [];
+    notifyListeners();
+  }
+
+  List<Event> get events {
+    return _filteredEvents.isEmpty ? _allEvent : _filteredEvents;
+  }
+}

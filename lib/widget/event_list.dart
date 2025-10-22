@@ -11,7 +11,15 @@ class EventList extends StatelessWidget {
     final eventProvider = Provider.of<Events>(context);
     final event = eventProvider.allEvent;
 
-    return SizedBox(
+    return event.isEmpty 
+    ? Center(child: Text(
+      'Oops!!! Check again for new Event',
+      style: TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.bold
+      ),
+    )) 
+    : SizedBox(
       height: 500,
       child: ListView.builder(
         itemCount: event.length,
@@ -36,7 +44,6 @@ class EventList extends StatelessWidget {
                 events.image,
                 fit: BoxFit.cover,
                 width: 80,
-                height: 300,
               ),
               title: Text(events.title),
               subtitle: Column(

@@ -1,4 +1,5 @@
 import 'package:eventparty/widget/category_list.dart';
+import 'package:eventparty/widget/event_botton.dart';
 import 'package:eventparty/widget/event_drawer.dart';
 import 'package:eventparty/widget/event_list.dart';
 import 'package:eventparty/widget/event_search.dart';
@@ -17,48 +18,50 @@ class HomeScreens extends StatelessWidget {
           ),
         ),
         actions: [
-          IconButton(
-            onPressed: () {}, 
-            icon: Icon(Icons.notifications_none_outlined)
+          CircleAvatar(
+            backgroundImage: AssetImage('assets/images/girl.png'),
           )
         ],
       ),
+      bottomNavigationBar: EventBotton(),
       drawer: EventDrawer(),
 
-      body: Container(
-        padding: EdgeInsets.symmetric(vertical: 15, horizontal: 13),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Discover amazing events',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold
-              ),
-            ),
-            SizedBox(height: 20,),
-            EventSearch(),
-            SizedBox(height: 15,),
-            CategoryList(),
-            SizedBox(height: 15,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Events For You',
-                  style: TextStyle(
-                    fontSize: 17
-                  ),
+      body: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.symmetric(vertical: 15, horizontal: 13),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Discover amazing events',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold
                 ),
-                Text(
-                  'View More'
-                )
-              ],
-            ),
-            SizedBox(height: 15,),
-            EventList()
-          ],
+              ),
+              SizedBox(height: 20,),
+              EventSearch(),
+              SizedBox(height: 15,),
+              CategoryList(),
+              SizedBox(height: 15,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Events For You',
+                    style: TextStyle(
+                      fontSize: 17
+                    ),
+                  ),
+                  Text(
+                    'View More'
+                  )
+                ],
+              ),
+              SizedBox(height: 15,),
+              EventList()
+            ],
+          ),
         ),
       ),
     );

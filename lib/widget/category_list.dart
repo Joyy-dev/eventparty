@@ -1,4 +1,6 @@
+import 'package:eventparty/provider/event.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CategoryList extends StatefulWidget {
   const CategoryList({super.key});
@@ -10,25 +12,32 @@ class CategoryList extends StatefulWidget {
 class _CategoryListState extends State<CategoryList> {
   int _selectedIndex = 0;
 
-
-  final List<String> categories = ['All', 'Music', 'Movie', 'Sports', 'Food', 'Cycling'];
-
   @override
   Widget build(BuildContext context) {
+    final categoryProvider = Provider.of<Events>(context);
+    final Categories = ['All', ...{
+      ...categoryProvider.allEvent.map((events) => events.category)
+    }].toList();
+
     return SizedBox(
       height: 60,
       child: ListView.builder(
-        itemCount: categories.length,
+        itemCount: Categories.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           bool isSelected = _selectedIndex == index;
+          final event = Categories[index];
 
           return GestureDetector(
             onTap: () {
               setState(() {
                 _selectedIndex = index;
               });
-              print('Selected: ${categories[index]}');
+              if (event == 'All') {
+                categoryProvider.resetFilter();
+              } else {
+                categoryProvider.filterBy(event);
+              } 
             },
             child: AnimatedContainer(
               duration: Duration(milliseconds: 200),
@@ -40,7 +49,7 @@ class _CategoryListState extends State<CategoryList> {
               ),
               child: Center(
                 child: Text(
-                  categories[index],
+                  event,
                   style: TextStyle(
                     color: isSelected ? Colors.white : Colors.black,
                     fontSize: 16

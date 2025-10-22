@@ -1,4 +1,5 @@
 import 'package:eventparty/provider/event.dart';
+import 'package:eventparty/screens/event_screens.dart';
 import 'package:eventparty/screens/home_screens.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
@@ -20,9 +21,13 @@ class MyApp extends StatelessWidget {
         title: 'Event Party App',
         theme: ThemeData(
           fontFamily: 'Poppins',
+          scaffoldBackgroundColor: Color(0xFFF2F2F2)
         ),
         home: HomeScreens(),
-      ),
+        routes: {
+          EventScreens.routeName: (context) => EventScreens()
+        },
+      )
     );
   }
 }
