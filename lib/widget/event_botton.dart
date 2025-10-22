@@ -1,4 +1,5 @@
 import 'package:eventparty/screens/event_screens.dart';
+import 'package:eventparty/screens/home_screens.dart';
 import 'package:flutter/material.dart';
 
 class EventBotton extends StatelessWidget {
@@ -18,14 +19,21 @@ class EventBotton extends StatelessWidget {
               Navigator.push(
                 context, 
                 MaterialPageRoute(
-                  builder: (context) => EventScreens()
+                  builder: (context) => HomeScreens()
                 )
               );
             }, 
             icon: Icon(Icons.home, size: 30)
           ),
           IconButton(
-            onPressed: () {}, 
+            onPressed: () {
+              Navigator.push(
+                context, 
+                MaterialPageRoute(
+                  builder: (context) => EventScreens()
+                )
+              );
+            }, 
             icon: Icon(Icons.event, size: 30,)
           ),
           IconButton(

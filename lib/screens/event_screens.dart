@@ -1,5 +1,6 @@
 import 'package:eventparty/widget/event_botton.dart';
 import 'package:eventparty/widget/event_carousel.dart';
+import 'package:eventparty/widget/event_drawer.dart';
 import 'package:eventparty/widget/event_search.dart';
 import 'package:eventparty/widget/popular_event.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,7 @@ class EventScreens extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: EventBotton(),
+      drawer: EventDrawer(),
 
       body: SingleChildScrollView(
         child: Container(

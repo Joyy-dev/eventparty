@@ -19,54 +19,119 @@ class PopularEvent extends StatelessWidget {
           final popularList = popularEvent[index];
           return Container(
             width: double.infinity,
-            height: 150,
-            child: ListTile(
-              leading: Image(
-                image: AssetImage(popularList.image),
-                fit: BoxFit.cover,
-                width: 80,
-              ),
-              title: Text(
-                popularList.title,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 17
-                ),
-              ),
-              subtitle: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    DateFormat('d MMM, h:mm a').format(popularList.eventDate),
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 14
-                    ),
+            height: 115,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: Row(
+                    children: [
+                      Container(
+                        height: 95,
+                        width: 100,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          image: DecorationImage(
+                            image: AssetImage(popularList.image)
+                          )
+                        ),
+                      ),
+                      Flexible(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              popularList.title,
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold
+                              ),
+                            ),
+                            Text(
+                              DateFormat('d, MMM, h:mm a').format(popularList.eventDate),
+                              style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 14
+                              ),
+                            ),
+                            Text(
+                              popularList.location,
+                              softWrap: true,
+                              overflow: TextOverflow.clip,
+                              style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 14
+                              ),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
                   ),
-                  Text(
-                    popularList.location,
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 15
-                    ),
-                  )
-                ],
-              ),
-              trailing: ElevatedButton(
-                onPressed: () {}, 
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFFFF5833),
-                  foregroundColor: Colors.white,
-                  textStyle: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 17,
-                  )
                 ),
-                child: Text(
-                  'JOIN'
+                ElevatedButton(
+                  onPressed: () {}, 
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xFFFF5833),
+                    foregroundColor: Colors.white
+                  ),
+                  child: Text(
+                    'JOIN'
+                  )
                 )
-              ),
+              ],
             ),
+            // child: ListTile(
+            //   leading: ClipRRect(
+            //     child: Image(
+            //       image: AssetImage(popularList.image),
+            //       fit: BoxFit.cover,
+            //       width: 80,
+            //     ),
+            //   ),
+            //   title: Text(
+            //     popularList.title,
+            //     style: TextStyle(
+            //       fontWeight: FontWeight.bold,
+            //       fontSize: 17
+            //     ),
+            //   ),
+            //   subtitle: Column(
+            //     crossAxisAlignment: CrossAxisAlignment.start,
+            //     children: [
+            //       Text(
+            //         DateFormat('d MMM, h:mm a').format(popularList.eventDate),
+            //         style: TextStyle(
+            //           color: Colors.grey,
+            //           fontSize: 14
+            //         ),
+            //       ),
+            //       Text(
+            //         popularList.location,
+            //         style: TextStyle(
+            //           color: Colors.grey,
+            //           fontSize: 15
+            //         ),
+            //       )
+            //     ],
+            //   ),
+            //   trailing: ElevatedButton(
+            //     onPressed: () {}, 
+            //     style: ElevatedButton.styleFrom(
+            //       backgroundColor: Color(0xFFFF5833),
+            //       foregroundColor: Colors.white,
+            //       textStyle: TextStyle(
+            //         fontWeight: FontWeight.bold,
+            //         fontSize: 17,
+            //       )
+            //     ),
+            //     child: Text(
+            //       'JOIN'
+            //     )
+            //   ),
+            // ),
           );
         },
       ),

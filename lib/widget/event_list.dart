@@ -1,4 +1,5 @@
 import 'package:eventparty/provider/event.dart';
+import 'package:eventparty/screens/single_event_screens.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -45,7 +46,19 @@ class EventList extends StatelessWidget {
                 fit: BoxFit.cover,
                 width: 80,
               ),
-              title: Text(events.title),
+              title: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context, 
+                    MaterialPageRoute(
+                      builder: (context) => SingleEventScreens(eventId: events.id,)
+                    )
+                  );
+                },
+                child: Text(
+                  events.title
+                )
+              ),
               subtitle: Column(
                 children: [
                   Row(
