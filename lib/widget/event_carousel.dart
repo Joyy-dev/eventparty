@@ -17,11 +17,11 @@ class _EventCarouselState extends State<EventCarousel> {
   Timer? _timer;
 
   final List<Color> eventColors = [
-    Color(0xFFFFF4F2), // Light peach
-    Color(0xFFE3F2FD), // Light blue
-    Color(0xFFF1F8E9), // Light green
-    Color(0xFFFFEBEE), // Light pink
-    Color(0xFFFFFDE7), // Light yellow
+    Color(0xFFFFF4F2),
+    Color(0xFFE3F2FD), 
+    Color(0xFFF1F8E9), 
+    Color(0xFFFFEBEE), 
+    Color(0xFFFFFDE7), 
   ];
 
   List<List<Event>> get eventGrid {

@@ -12,10 +12,9 @@ class HomeScreens extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-          child: Text(
-            'Home'
-          ),
+        centerTitle: true,
+        title: Text(
+          'Home'
         ),
         actions: [
           CircleAvatar(

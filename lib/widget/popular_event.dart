@@ -1,4 +1,5 @@
 import 'package:eventparty/provider/event.dart';
+import 'package:eventparty/screens/event_detail_screens.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
@@ -17,7 +18,7 @@ class PopularEvent extends StatelessWidget {
         itemCount: popularEvent.length,
         itemBuilder: (context, index) {
           final popularList = popularEvent[index];
-          return Container(
+          return SizedBox(
             width: double.infinity,
             height: 115,
             child: Row(
@@ -72,7 +73,13 @@ class PopularEvent extends StatelessWidget {
                   ),
                 ),
                 ElevatedButton(
-                  onPressed: () {}, 
+                  onPressed: () {
+                    Navigator.push(
+                      context, MaterialPageRoute(
+                        builder: (context) => EventDetailScreens(id: popularList.id)
+                      )
+                    );
+                  }, 
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFFFF5833),
                     foregroundColor: Colors.white

@@ -13,10 +13,9 @@ class EventScreens extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-          child: Text(
-            'Event Home'
-          ),
+        centerTitle: true,
+        title: Text(
+          'Event Home'
         ),
         actions: [
           Icon(Icons.notifications_active_outlined)
