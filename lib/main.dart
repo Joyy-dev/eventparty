@@ -1,4 +1,5 @@
 import 'package:eventparty/provider/event.dart';
+import 'package:eventparty/provider/party.dart';
 import 'package:eventparty/screens/event_screens.dart';
 import 'package:eventparty/screens/home_screens.dart';
 import 'package:provider/provider.dart';
@@ -13,21 +14,31 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) {
-        return Events();
-      },
-      child: MaterialApp(
-        title: 'Event Party App',
-        theme: ThemeData(
-          fontFamily: 'Poppins',
-          scaffoldBackgroundColor: Color(0xFFF2F2F2)
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) {
+            return Events();
+          }
         ),
-        home: HomeScreens(),
-        routes: {
-          EventScreens.routeName: (context) => EventScreens()
-        },
-      )
-    );
+        ChangeNotifierProvider(
+          create: (context) {
+            return Parties();
+          }
+        )
+      ],
+      
+        child: MaterialApp(
+          title: 'Event Party App',
+          theme: ThemeData(
+            fontFamily: 'Poppins',
+            scaffoldBackgroundColor: Color(0xFFF2F2F2)
+          ),
+          home: HomeScreens(),
+          routes: {
+            EventScreens.routeName: (context) => EventScreens()
+          },
+        )
+      );
   }
 }

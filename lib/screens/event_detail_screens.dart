@@ -27,14 +27,24 @@ class EventDetailScreens extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Icon(Icons.favorite_border_outlined, color: Color(0xFFFF5833),),
-            SizedBox(width: 6,),
+            Container(
+              padding: EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  width: 1,
+                  color: Color(0xFFFF5833)
+                )
+              ),
+              child: Icon(Icons.favorite_border_outlined, color: Color(0xFFFF5833),)
+            ),
+            SizedBox(width: 9,),
             Expanded(
               child: ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xFFFF5833),
                   foregroundColor: Colors.white,
+                  padding: EdgeInsets.symmetric(vertical: 14)
                 ),
                 child: Text(
                   'JOIN'

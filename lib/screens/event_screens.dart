@@ -15,7 +15,7 @@ class EventScreens extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          'Event Home'
+          'Party Home'
         ),
         actions: [
           Icon(Icons.notifications_active_outlined)

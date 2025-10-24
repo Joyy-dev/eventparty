@@ -66,7 +66,7 @@ class EventDrawer extends StatelessWidget {
                     context
                   ).pushReplacement(
                     MaterialPageRoute(
-                      builder: (context) => EventScreens()
+                      builder: (context) => HomeScreens()
                     )
                   );
                 },
@@ -76,9 +76,17 @@ class EventDrawer extends StatelessWidget {
                 ),
               ),
               ListTile(
-                leading: Icon(Icons.favorite_border_outlined),
+                onTap: () {
+                  Navigator.push(
+                    context, 
+                    MaterialPageRoute(
+                      builder: (context) => EventScreens()
+                    )
+                  );
+                },
+                leading: Icon(Icons.party_mode_outlined),
                 title: Text(
-                  'Favorite Events'
+                  'All Party'
                 ),
               ),
               Divider(),

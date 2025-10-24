@@ -1,7 +1,7 @@
 import 'dart:async';
+import 'package:eventparty/provider/party.dart';
 import 'package:intl/intl.dart';
 
-import 'package:eventparty/provider/event.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
@@ -24,15 +24,15 @@ class _EventCarouselState extends State<EventCarousel> {
     Color(0xFFFFFDE7), 
   ];
 
-  List<List<Event>> get eventGrid {
-    final eventProvider = Provider.of<Events>(context);
-    final eventSlide = eventProvider.allEvent;
+  List<List<Party>> get partyGrid {
+    final eventProvider = Provider.of<Parties>(context);
+    final partySlide = eventProvider.partyList;
 
-    List<List<Event>> eventhero = [];
-    for (int i = 0; i < eventSlide.length; i += 1) {
-      eventhero.add(eventSlide.skip(i).take(1).toList());
+    List<List<Party>> partyHero = [];
+    for (int i = 0; i < partySlide.length; i += 1) {
+      partyHero.add(partySlide.skip(i).skip(1).take(1).toList());
     }
-    return eventhero;
+    return partyHero;
   }
 
   @override
@@ -64,9 +64,9 @@ class _EventCarouselState extends State<EventCarousel> {
       height: 200,
       child: PageView.builder(
         controller: _pageController,
-        itemCount: eventGrid.length * 1000,
+        itemCount: partyGrid.length * 1000,
         itemBuilder: (context, index) {
-          final carouselslide = eventGrid[index % eventGrid.length];
+          final carouselslide = partyGrid[index % partyGrid.length];
           return GridView.builder(
             itemCount: carouselslide.length,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -84,7 +84,7 @@ class _EventCarouselState extends State<EventCarousel> {
                     width: 175,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage(events.image),
+                        image: AssetImage(events.partyImage),
                         fit: BoxFit.cover,
                       ),
                       borderRadius: BorderRadius.circular(10)
@@ -102,17 +102,17 @@ class _EventCarouselState extends State<EventCarousel> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          DateFormat('d').format(events.eventDate),
+                          DateFormat('d').format(events.partyDate),
                           style: TextStyle(
                             color: Colors.grey
                           ),
                         ),
                         Text(
-                          DateFormat('MMM y').format(events.eventDate)
+                          DateFormat('MMM y').format(events.partyTime)
                         ),
                         SizedBox(height: 20,),
                         Text(
-                          events.title
+                          events.partyTitle,
                         ),
                         SizedBox(height: 20,),
                         Row(
@@ -120,7 +120,7 @@ class _EventCarouselState extends State<EventCarousel> {
                             Icon(Icons.location_pin, color: Colors.grey,),
                             Flexible(
                               child: Text(
-                                events.location,
+                                events.partyLocation,
                                 softWrap: true,
                                 overflow: TextOverflow.clip,
                                 style: TextStyle(

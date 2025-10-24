@@ -1,5 +1,5 @@
-import 'package:eventparty/provider/event.dart';
-import 'package:eventparty/screens/event_detail_screens.dart';
+import 'package:eventparty/provider/party.dart';
+import 'package:eventparty/screens/favorite_screens.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
@@ -9,8 +9,8 @@ class PopularEvent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final popularProvider = Provider.of<Events>(context);
-    final popularEvent = popularProvider.allEvent;
+    final popularProvider = Provider.of<Parties>(context);
+    final popularEvent = popularProvider.partyList;
 
     return SizedBox(
       height: 500,
@@ -34,7 +34,7 @@ class PopularEvent extends StatelessWidget {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           image: DecorationImage(
-                            image: AssetImage(popularList.image)
+                            image: AssetImage(popularList.partyImage)
                           )
                         ),
                       ),
@@ -44,21 +44,21 @@ class PopularEvent extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              popularList.title,
+                              popularList.partyTitle,
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold
                               ),
                             ),
                             Text(
-                              DateFormat('d, MMM, h:mm a').format(popularList.eventDate),
+                              DateFormat('d, MMM, h:mm a').format(popularList.partyDate),
                               style: TextStyle(
                                 color: Colors.grey,
                                 fontSize: 14
                               ),
                             ),
                             Text(
-                              popularList.location,
+                              popularList.partyLocation,
                               softWrap: true,
                               overflow: TextOverflow.clip,
                               style: TextStyle(
@@ -76,7 +76,7 @@ class PopularEvent extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context, MaterialPageRoute(
-                        builder: (context) => EventDetailScreens(id: popularList.id)
+                        builder: (context) => FavoriteScreens(partyId: popularList.partyId,)
                       )
                     );
                   }, 
@@ -90,55 +90,6 @@ class PopularEvent extends StatelessWidget {
                 )
               ],
             ),
-            // child: ListTile(
-            //   leading: ClipRRect(
-            //     child: Image(
-            //       image: AssetImage(popularList.image),
-            //       fit: BoxFit.cover,
-            //       width: 80,
-            //     ),
-            //   ),
-            //   title: Text(
-            //     popularList.title,
-            //     style: TextStyle(
-            //       fontWeight: FontWeight.bold,
-            //       fontSize: 17
-            //     ),
-            //   ),
-            //   subtitle: Column(
-            //     crossAxisAlignment: CrossAxisAlignment.start,
-            //     children: [
-            //       Text(
-            //         DateFormat('d MMM, h:mm a').format(popularList.eventDate),
-            //         style: TextStyle(
-            //           color: Colors.grey,
-            //           fontSize: 14
-            //         ),
-            //       ),
-            //       Text(
-            //         popularList.location,
-            //         style: TextStyle(
-            //           color: Colors.grey,
-            //           fontSize: 15
-            //         ),
-            //       )
-            //     ],
-            //   ),
-            //   trailing: ElevatedButton(
-            //     onPressed: () {}, 
-            //     style: ElevatedButton.styleFrom(
-            //       backgroundColor: Color(0xFFFF5833),
-            //       foregroundColor: Colors.white,
-            //       textStyle: TextStyle(
-            //         fontWeight: FontWeight.bold,
-            //         fontSize: 17,
-            //       )
-            //     ),
-            //     child: Text(
-            //       'JOIN'
-            //     )
-            //   ),
-            // ),
           );
         },
       ),

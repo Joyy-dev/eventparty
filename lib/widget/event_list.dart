@@ -1,5 +1,5 @@
 import 'package:eventparty/provider/event.dart';
-import 'package:eventparty/screens/single_event_screens.dart';
+import 'package:eventparty/screens/event_detail_screens.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -51,7 +51,7 @@ class EventList extends StatelessWidget {
                   Navigator.push(
                     context, 
                     MaterialPageRoute(
-                      builder: (context) => SingleEventScreens(eventId: events.id,)
+                      builder: (context) => EventDetailScreens(id: events.id)
                     )
                   );
                 },

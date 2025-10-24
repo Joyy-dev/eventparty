@@ -1,4 +1,5 @@
 import 'package:eventparty/provider/event.dart';
+import 'package:eventparty/widget/party_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -17,7 +18,7 @@ class EventScroll extends StatelessWidget {
       builder: (context, scrollController) {
         return Container(
           width: double.infinity,
-          padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+          padding: EdgeInsets.symmetric(vertical: 25, horizontal: 10),
           decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(35),
@@ -29,9 +30,16 @@ class EventScroll extends StatelessWidget {
           child: SingleChildScrollView(
             controller: scrollController,
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  PartyDetail(),
+                  SizedBox(height: 10,),
                   Text(
-                    eventDetail.description
+                    eventDetail.description,
+                    style: TextStyle(
+                      fontSize: 17,
+                      color: Colors.grey
+                    ),
                   )
                 ],
               ),
