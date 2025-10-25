@@ -11,6 +11,8 @@ class EventScreens extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.sizeOf(context);
+    final horizontalPadding = size.width > 1000 ? size.width * 0.1 : 16.0;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -24,49 +26,51 @@ class EventScreens extends StatelessWidget {
       bottomNavigationBar: EventBotton(),
       drawer: EventDrawer(),
 
-      body: SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.symmetric(vertical: 15, horizontal: 13),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Icon(Icons.location_pin, color: Colors.grey,),
-                  Text(
-                    'San Francisco, California',
-                    style: TextStyle(
-                      fontSize: 17,
-                      color: Colors.grey
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.symmetric(vertical: 15, horizontal: horizontalPadding),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Icon(Icons.location_pin, color: Colors.grey,),
+                    Text(
+                      'San Francisco, California',
+                      style: TextStyle(
+                        fontSize: 17,
+                        color: Colors.grey
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 20,),
-              EventSearch(),
-              SizedBox(height: 20,),
-              EventCarousel(),
-              SizedBox(height: 20,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Popular Events',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 17
+                  ],
+                ),
+                SizedBox(height: 20,),
+                EventSearch(),
+                SizedBox(height: 20,),
+                EventCarousel(),
+                SizedBox(height: 20,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Popular Events',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 17
+                      ),
                     ),
-                  ),
-                  Text(
-                    'See all',
-                    style: TextStyle(
-                      fontSize: 15
-                    ),
-                  )
-                ],
-              ),
-              SizedBox(height: 20,),
-              PopularEvent()
-            ],
+                    Text(
+                      'See all',
+                      style: TextStyle(
+                        fontSize: 15
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(height: 20,),
+                PopularEvent()
+              ],
+            ),
           ),
         ),
       ),

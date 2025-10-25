@@ -27,7 +27,6 @@ class MyApp extends StatelessWidget {
           }
         )
       ],
-      
         child: MaterialApp(
           title: 'Event Party App',
           theme: ThemeData(

@@ -55,21 +55,6 @@ class EventDrawer extends StatelessWidget {
                     )
                   );
                 },
-                leading: Icon(Icons.home),
-                title: Text(
-                  'Home'
-                ),
-              ),
-              ListTile(
-                onTap: () {
-                  Navigator.of(
-                    context
-                  ).pushReplacement(
-                    MaterialPageRoute(
-                      builder: (context) => HomeScreens()
-                    )
-                  );
-                },
                 leading: Icon(Icons.event_outlined),
                 title: Text(
                   'All Events'
@@ -87,6 +72,12 @@ class EventDrawer extends StatelessWidget {
                 leading: Icon(Icons.party_mode_outlined),
                 title: Text(
                   'All Party'
+                ),
+              ),
+              ListTile(
+                leading: Icon(Icons.favorite_border_outlined),
+                title: Text(
+                  'Favorite Event'
                 ),
               ),
               Divider(),

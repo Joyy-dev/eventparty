@@ -21,7 +21,7 @@ class EventList extends StatelessWidget {
       ),
     )) 
     : SizedBox(
-      height: 500,
+      height: 600,
       child: ListView.builder(
         itemCount: event.length,
         itemBuilder: (context, index) {

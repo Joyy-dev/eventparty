@@ -20,7 +20,7 @@ class PopularEvent extends StatelessWidget {
           final popularList = popularEvent[index];
           return SizedBox(
             width: double.infinity,
-            height: 115,
+            height: 140,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -29,7 +29,7 @@ class PopularEvent extends StatelessWidget {
                   child: Row(
                     children: [
                       Container(
-                        height: 95,
+                        height: 100,
                         width: 100,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -38,6 +38,7 @@ class PopularEvent extends StatelessWidget {
                           )
                         ),
                       ),
+                      SizedBox(width: 9,),
                       Flexible(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,

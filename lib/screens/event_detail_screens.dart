@@ -12,7 +12,8 @@ class EventDetailScreens extends StatelessWidget {
   Widget build(BuildContext context) {
     final detailProvider = Provider.of<Events>(context);
     final eventDetail = detailProvider.findById(id);
-
+    final size = MediaQuery.sizeOf(context);
+    final horizontalPadding = size.width > 1000 ? size.width * 0.1 : 16.0;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -55,85 +56,90 @@ class EventDetailScreens extends StatelessWidget {
         ),
       ),
 
-      body: Stack(
-        children: [
-          Column(
+      body: SafeArea(
+        child: Container(
+          padding: EdgeInsets.symmetric(vertical: 10, horizontal: horizontalPadding),
+          child: Stack(
             children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              Column(
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Image.asset(
-                      eventDetail.image,
-                      fit: BoxFit.cover,
-                      width: 190,
-                      height: 270,
-                    ),
-                  ),
-                  SizedBox(width: 10,),
-                  Expanded(
-                    child: Container(
-                      padding: EdgeInsets.only(top: 60, right: 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Column(
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.asset(
+                          eventDetail.image,
+                          fit: BoxFit.cover,
+                          width: 190,
+                          height: 270,
+                        ),
+                      ),
+                      SizedBox(width: 10,),
+                      Expanded(
+                        child: Container(
+                          padding: EdgeInsets.only(top: 60, right: 10),
+                          child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                DateFormat('d').format(eventDetail.eventDate),
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 15
-                                ),
-                              ),
-                              Text(
-                                DateFormat('MMM').format(eventDetail.eventDate),
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 15
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 20,),
-                          Text(
-                            eventDetail.title,
-                            softWrap: true,
-                            overflow: TextOverflow.clip,
-                            style: TextStyle(
-                              fontSize: 17,
-                              fontWeight: FontWeight.bold
-                            ),
-                          ),
-                          SizedBox(height: 20,),
-                          Row(
-                            children: [
-                              Icon(Icons.location_pin, color: Colors.grey,),
-                              Expanded(
-                                child: Text(
-                                  eventDetail.location,
-                                  softWrap: true,
-                                  overflow: TextOverflow.clip,
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                    fontSize: 15
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    DateFormat('d').format(eventDetail.eventDate),
+                                    style: TextStyle(
+                                      color: Colors.grey,
+                                      fontSize: 15
+                                    ),
                                   ),
+                                  Text(
+                                    DateFormat('MMM').format(eventDetail.eventDate),
+                                    style: TextStyle(
+                                      color: Colors.grey,
+                                      fontSize: 15
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 20,),
+                              Text(
+                                eventDetail.title,
+                                softWrap: true,
+                                overflow: TextOverflow.clip,
+                                style: TextStyle(
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold
                                 ),
+                              ),
+                              SizedBox(height: 20,),
+                              Row(
+                                children: [
+                                  Icon(Icons.location_pin, color: Colors.grey,),
+                                  Expanded(
+                                    child: Text(
+                                      eventDetail.location,
+                                      softWrap: true,
+                                      overflow: TextOverflow.clip,
+                                      style: TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 15
+                                      ),
+                                    ),
+                                  )
+                                ],
                               )
                             ],
-                          )
-                        ],
-                      ),
-                    ),
-                  )
+                          ),
+                        ),
+                      )
+                    ],
+                  ),  
                 ],
-              ),  
-            ],
+              ),
+              EventScroll(id: eventDetail.id,)
+            ]
           ),
-          EventScroll(id: eventDetail.id,)
-        ]
+        ),
       ),
     );
   }
