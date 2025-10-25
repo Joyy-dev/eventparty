@@ -107,6 +107,20 @@ class Events with ChangeNotifier {
     notifyListeners();
   }
 
+  void searchEvent(String query) {
+    if (query.isEmpty) {
+      _filteredEvents = [];
+    } else {
+      _filteredEvents = _allEvent.where((event) {
+        final titleLower = event.title.toLowerCase();
+        final locationLower = event.location.toString();
+        final searchLower = query.toLowerCase();
+        return titleLower.contains(searchLower) || locationLower.contains(searchLower);
+      }).toList();
+    }
+    notifyListeners();
+  }
+
   void resetFilter() {
     _filteredEvents = [];
     notifyListeners();

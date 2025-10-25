@@ -76,6 +76,22 @@ class Parties with ChangeNotifier {
     )
   ];
 
+  List<Party> _filteredParty = [];
+
+  void _searchParty (String query) {
+    if (query.isEmpty) {
+      _filteredParty = [];
+    } else {
+      _filteredParty =_allParty.where((party) {
+        final titleLower = party.partyTitle.toLowerCase();
+        final searchLocation = party.partyLocation.toString();
+        final searchLower = query.toLowerCase();
+        return titleLower.contains(searchLower) || searchLocation.contains(searchLower);
+      }).toList();
+    }
+    notifyListeners();
+  }
+
   List<Party> get partyList {
     return [..._allParty];
   }
