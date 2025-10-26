@@ -1,7 +1,8 @@
 import 'package:eventparty/provider/event.dart';
 import 'package:eventparty/provider/party.dart';
 import 'package:eventparty/screens/event_screens.dart';
-import 'package:eventparty/screens/home_screens.dart';
+//import 'package:eventparty/screens/home_screens.dart';
+import 'package:eventparty/screens/welcome_screens.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
@@ -33,9 +34,10 @@ class MyApp extends StatelessWidget {
             fontFamily: 'Poppins',
             scaffoldBackgroundColor: Color(0xFFF2F2F2)
           ),
-          home: HomeScreens(),
+          home: WelcomeScreens(),
           routes: {
-            EventScreens.routeName: (context) => EventScreens()
+            EventScreens.routeName: (context) => EventScreens(),
+            WelcomeScreens.rounteName: (context) => WelcomeScreens()
           },
         )
       );

@@ -78,7 +78,7 @@ class Parties with ChangeNotifier {
 
   List<Party> _filteredParty = [];
 
-  void _searchParty (String query) {
+  void searchParty (String query) {
     if (query.isEmpty) {
       _filteredParty = [];
     } else {
@@ -93,7 +93,7 @@ class Parties with ChangeNotifier {
   }
 
   List<Party> get partyList {
-    return [..._allParty];
+    return _filteredParty.isEmpty ? _allParty : _filteredParty;
   }
 
   Party findById (String id) {

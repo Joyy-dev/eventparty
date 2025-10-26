@@ -1,4 +1,5 @@
 import 'package:eventparty/provider/event.dart';
+import 'package:eventparty/provider/party.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -22,6 +23,7 @@ class EventSearch extends StatelessWidget {
         ),
         onChanged: (value) {
           Provider.of<Events>(context, listen: false).searchEvent(value);
+          Provider.of<Parties>(context, listen: false).searchParty(value);
         },
       ),
     );
