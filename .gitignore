@@ -43,3 +43,15 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+#Environments or secrets
+.env
+Keys.json
+
+# Fiebase cofig files
+android/app/google-services.json
+ios/Runner/Info.plist
+macos/Runner/Info.plist
+web/firebase-config.js
+firebase.json
+lib/firebase_options.dart
