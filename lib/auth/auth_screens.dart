@@ -1,3 +1,5 @@
+import 'package:eventparty/screens/home_screens.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class AuthScreens extends StatefulWidget {
@@ -22,25 +24,69 @@ class _AuthScreensState extends State<AuthScreens> {
     super.dispose();
   }
 
-  void _submitAuthForm() {
+
+  Future<void> _submitAuthForm() async{
     if (_formKey.currentState!.validate()) {
       final email = _emailController.text.trim();
       final password = _passwordController.text.trim();
 
-      if (!_isLogin) {
-        final confirmPassword = _confirmPassword.text.trim();
-        if (password != confirmPassword) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Password do not match'))
+      try {
+        if (_isLogin) {
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
+            email: email, 
+            password: password
           );
-          return;
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Login Successful!'))
+          );
+          Navigator.push(
+            context, 
+            MaterialPageRoute(builder: (context) => HomeScreens())
+          );
+        } else {
+          final confirmPassword = _confirmPassword.text.trim();
+          if (password != confirmPassword) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('Password do not match'))
+            );
+            return;
+          }
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+            email: email, 
+            password: password
+          );
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Account created Successfully!!'))
+          );
+          Navigator.push(
+            context, 
+            MaterialPageRoute(builder: (context) => HomeScreens())
+          );
         }
+      } on FirebaseAuthException catch (error) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(error.message ?? 'Authentication failed'))
+        );
+      } catch (error) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Oops!!!! Something went wrong: $error'))
+        );
       }
-
-      print('email = $email');
-      print('password = $password');
     }
   }
+
+  @override
+  void initState() {
+    super.initState();
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      Navigator.push(
+        context, 
+        MaterialPageRoute(builder: (context) => HomeScreens())
+      );
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
