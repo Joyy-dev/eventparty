@@ -3,7 +3,7 @@ import 'package:eventparty/widget/event_botton.dart';
 import 'package:eventparty/widget/event_drawer.dart';
 import 'package:eventparty/widget/event_list.dart';
 import 'package:eventparty/widget/event_search.dart';
-import 'package:eventparty/widget/profile_dropdown.dart';
+//import 'package:eventparty/widget/profile_dropdown.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreens extends StatelessWidget {
@@ -21,7 +21,7 @@ class HomeScreens extends StatelessWidget {
           'Home'
         ),
         actions: [
-          ProfileDropdown()
+          //ProfileDropdown()
         ],
       ),
       bottomNavigationBar: EventBotton(),

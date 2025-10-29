@@ -1,18 +1,16 @@
-import 'package:eventparty/firebase_options.dart';
 import 'package:eventparty/provider/event.dart';
 import 'package:eventparty/provider/party.dart';
 import 'package:eventparty/screens/event_screens.dart';
-//import 'package:eventparty/screens/home_screens.dart';
+import 'package:eventparty/screens/home_screens.dart';
 import 'package:eventparty/screens/welcome_screens.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform
-  );
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -48,5 +46,28 @@ class MyApp extends StatelessWidget {
           },
         )
       );
+  }
+}
+
+class AutoWrapper extends StatelessWidget {
+  const AutoWrapper({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder(
+      stream: FirebaseAuth.instance.authStateChanges(), 
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Scaffold(
+            body: CircularProgressIndicator(),
+          );
+        }
+        if (snapshot.hasData) {
+          return HomeScreens();
+        } else {
+          return WelcomeScreens();
+        }
+      },
+    );
   }
 }
