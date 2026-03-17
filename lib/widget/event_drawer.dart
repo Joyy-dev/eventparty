@@ -1,5 +1,6 @@
 import 'package:eventparty/screens/event_screens.dart';
 import 'package:eventparty/screens/home_screens.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class EventDrawer extends StatelessWidget {
@@ -96,6 +97,20 @@ class EventDrawer extends StatelessWidget {
                 title: Text(
                   'User Profile'
                 )
+              ),
+              GestureDetector(
+                onTap: () {
+                  FirebaseAuth.instance.signOut();
+                },
+                child: ListTile(
+                  leading: Icon(Icons.logout),
+                  title: Text(
+                    'Logout',
+                    style: TextStyle(
+                      fontSize: 18
+                    ),
+                  ),
+                ),
               ),
               Divider(),
               Padding(

@@ -88,7 +88,7 @@ class Events with ChangeNotifier {
   List<Event> _filteredEvents = [];
 
   Event findById (String id) {
-    return _allEvent.firstWhere((Event) => Event.id == id);
+    return _allEvent.firstWhere((eventd) => eventd.id == id);
   }
 
   List<Event> get allEvent {

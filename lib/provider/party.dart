@@ -97,6 +97,6 @@ class Parties with ChangeNotifier {
   }
 
   Party findById (String id) {
-    return _allParty.firstWhere((Party) => Party.partyId == Party.partyId);
+    return _allParty.firstWhere((partys) => partys.partyId == partys.partyId);
   }
 }

@@ -38,7 +38,7 @@ class _EventCarouselState extends State<EventCarousel> {
   void initState() {
     super.initState();
     _pageController = PageController();
-    _timer = Timer.periodic(Duration(seconds: 3), (Timer) {
+    _timer = Timer.periodic(Duration(seconds: 3), (time) {
       if (_pageController.hasClients) {
         int nextpage = ((_pageController.page ?? 0).round() + 1) % 3;
         _pageController.animateToPage(

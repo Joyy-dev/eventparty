@@ -15,18 +15,18 @@ class _CategoryListState extends State<CategoryList> {
   @override
   Widget build(BuildContext context) {
     final categoryProvider = Provider.of<Events>(context);
-    final Categories = ['All', ...{
+    final categories = ['All', ...{
       ...categoryProvider.allEvent.map((events) => events.category)
     }].toList();
 
     return SizedBox(
       height: 60,
       child: ListView.builder(
-        itemCount: Categories.length,
+        itemCount: categories.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           bool isSelected = _selectedIndex == index;
-          final event = Categories[index];
+          final event = categories[index];
 
           return GestureDetector(
             onTap: () {
@@ -59,7 +59,7 @@ class _CategoryListState extends State<CategoryList> {
             ),
           );
         },
-        ),
+      ),
     );
   }
 }
